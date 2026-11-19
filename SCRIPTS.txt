@@ -10,7 +10,12 @@ git status
 git add .
 git commit -m "feat: Implementar clases del modelo (Checkpoint 2)"
 git push
-
+git add .
+git commit -m "feat: Agregar scripts usados (checkpoint 3)"
+git add .
+git commit -m "feat: Agregar diseño de interfaz (checkpoint 4)"
+git add .
+git commit -m "Implementar pantallas Compose (checkpoint 5)"
 
 PROMPTS:
 Checkpoint 1:
@@ -102,5 +107,80 @@ Requisitos:
 - No uses base de datos ni librerías externas.
 - No toques git, .gitignore ni los archivos de Gradle.
 - Al terminar, verifica que el proyecto compila.
+
+Checkpoint 4:
+Necesito generar el entregable del "Checkpoint 4 - Diseño de Interfaz" 
+de mi proyecto Android (Kotlin + Jetpack Compose) de una Librería.
+
+Crea el archivo docs/diseno_pantallas.txt en texto plano (sin Markdown, 
+solo ASCII) con el diseño de DOS pantallas que listen objetos de las 
+clases que ya existen en el paquete models (revisa Libro.kt, Autor.kt 
+y DatosEjemplo.kt para usar los nombres reales de los atributos).
+
+Pantalla 1: Lista de Libros.
+Pantalla 2: Lista de Autores.
+
+Para cada pantalla incluye:
+1. Un boceto en ASCII (cuadros con +, -, |) que muestre TopAppBar, 
+   las Cards con datos de ejemplo tomados de DatosEjemplo.kt y la 
+   NavigationBar inferior.
+2. La lista de componentes de Jetpack Compose que se usarán 
+   (Scaffold, TopAppBar, LazyColumn, items, Card, Column, Row, Text, 
+   NavigationBar, NavigationBarItem, Icon) con una línea explicando 
+   para qué se usa cada uno.
+3. Los atributos de la clase que se muestran en pantalla.
+
+Al final agrega estas secciones:
+- NAVEGACIÓN: NavHost y rememberNavController, rutas "libros" y "autores".
+- FUENTE DE DATOS: lista estática de DatosEjemplo.kt, sin base de datos.
+- ESTRUCTURA DE ARCHIVOS: ui/screens/LibrosScreen.kt, 
+  ui/screens/AutoresScreen.kt, ui/navigation/AppNavigation.kt.
+
+Reglas:
+- Solo crea ese archivo. No modifiques ni crees archivos Kotlin 
+  todavía (eso es el checkpoint 5).
+- No toques git, .gitignore ni los archivos de Gradle.
+- Todo en español.
+
+Checkpoint 5:
+Voy a implementar el "Checkpoint 5 - Interfaz" de mi proyecto Android 
+(Kotlin + Jetpack Compose, Material 3) de una Librería.
+
+Lee primero docs/diseno_pantallas.txt y sigue ese diseño al pie de la 
+letra. Usa las clases del paquete models (Libro, Autor, Categoria) y 
+los datos de DatosEjemplo.kt. No cambies las clases del modelo.
+
+Crea estos archivos:
+1. ui/screens/LibrosScreen.kt
+   - Composable LibrosScreen(libros: List<Libro>)
+   - LazyColumn con una Card por libro: título, autor, categoría, 
+     precio y stock.
+2. ui/screens/AutoresScreen.kt
+   - Composable AutoresScreen(autores: List<Autor>)
+   - LazyColumn con una Card por autor: nombre y nacionalidad.
+3. ui/navigation/AppNavigation.kt
+   - Scaffold con TopAppBar (el título cambia según la pantalla) y 
+     NavigationBar inferior con dos NavigationBarItem (Libros y Autores, 
+     con Icon).
+   - NavHost con rememberNavController, rutas "libros" (inicio) 
+     y "autores".
+4. Modifica MainActivity.kt para que llame a AppNavigation() dentro 
+   del tema de la app.
+
+Reglas:
+- Si falta la dependencia navigation-compose, agrégala en 
+  gradle/libs.versions.toml y app/build.gradle.kts (es la única 
+  modificación de Gradle permitida). Para los íconos usa solo 
+  Icons.Default.* que ya vengan incluidos (por ejemplo Icons.Default.Home 
+  y Icons.Default.Person) para no agregar más librerías.
+- Si un libro necesita mostrar el nombre del autor, usa la relación que 
+  ya existe en el modelo.
+- Sin base de datos, sin ViewModel, sin librerías extra.
+- No toques git ni .gitignore.
+- Al terminar, compila el proyecto y dime si hay errores. Lista los 
+  archivos creados o modificados.
+
+
+
 
 
