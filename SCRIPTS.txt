@@ -1,0 +1,106 @@
+Comandos:
+git init
+git status
+git add .
+git commit -m "docs: diagrama de clases subido"
+git remote add origin https://github.com/nachocar64/1er-Parcial-Progra-3.git
+git branch -M main
+git push -u origin main
+git status
+git add .
+git commit -m "feat: Implementar clases del modelo (Checkpoint 2)"
+git push
+
+
+PROMPTS:
+Checkpoint 1:
+*Adjunto el PDF* Dame el diagrama de clases (checkpoint 1) para una librería. Que Sea ni muy simple pero tampoco complicada; pásame el código mermaid del diagrama como texto plano. Toma en cuenta que debo realizar esta aplicación en una hora. 
+
+Checkpoint 2 (con el Agente de Android Studio):
+Tengo un proyecto Android con Jetpack Compose (Kotlin) ya creado.
+Implementa en Kotlin el siguiente diagrama de clases (Mermaid) 
+en el paquete models, un archivo por clase:
+
+classDiagram
+    class Persona {
+        <<abstract>>
+        #id: Int
+        #nombre: String
+        #apellido: String
+        #telefono: String
+        +nombreCompleto() String
+    }
+
+    class Cliente {
+        -email: String
+        -puntos: Int
+        +acumularPuntos(monto: Double) void
+    }
+
+    class Empleado {
+        -cargo: String
+        -salario: Double
+    }
+
+    class Autor {
+        -id: Int
+        -nombre: String
+        -nacionalidad: String
+    }
+
+    class Categoria {
+        <<enumeration>>
+        NOVELA
+        CIENCIA
+        HISTORIA
+        INFANTIL
+        TECNOLOGIA
+    }
+
+    class Libro {
+        -id: Int
+        -titulo: String
+        -isbn: String
+        -precio: Double
+        -stock: Int
+        -anioPublicacion: Int
+        +hayStock(cantidad: Int) Boolean
+        +reducirStock(cantidad: Int) void
+        +aumentarStock(cantidad: Int) void
+    }
+
+    class Venta {
+        -id: Int
+        -fecha: String
+        -detalles: List~DetalleVenta~
+        +agregarDetalle(detalle: DetalleVenta) void
+        +calcularTotal() Double
+    }
+
+    class DetalleVenta {
+        -cantidad: Int
+        -precioUnitario: Double
+        +calcularSubtotal() Double
+    }
+
+    Persona <|-- Cliente
+    Persona <|-- Empleado
+    Autor "1" --> "0..*" Libro : escribe
+    Libro --> Categoria : pertenece a
+    Cliente "1" --> "0..*" Venta : realiza
+    Empleado "1" --> "0..*" Venta : atiende
+    Venta "1" *-- "1..*" DetalleVenta : contiene
+    DetalleVenta "0..*" --> "1" Libro : referencia
+
+Requisitos:
+- Persona debe ser abstract class; Cliente y Empleado heredan de ella.
+- Categoria es un enum class.
+- Usa data class donde tenga sentido (Libro, Autor, DetalleVenta).
+- Respeta visibilidad, atributos y métodos del diagrama.
+- Crea un archivo DatosEjemplo.kt con listas de ejemplo 
+  (al menos 5 libros, 3 autores, 3 clientes) usando listOf(...).
+- No uses base de datos ni librerías externas.
+- No toques git, .gitignore ni los archivos de Gradle.
+- Al terminar, verifica que el proyecto compila.
+
+
