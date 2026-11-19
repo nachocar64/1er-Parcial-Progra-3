@@ -1,0 +1,152 @@
+===============================================================================
+           ENTREGABLE CHECKPOINT 4 - DISENO DE INTERFAZ DE LIBRERIA
+===============================================================================
+
+PANTALLA 1: LISTA DE LIBROS
+-------------------------------------------------------------------------------
+
+1. BOCETO ASCII DE LA PANTALLA
+
++-------------------------------------------------------+
+|  [Libreria - Catalogo de Libros]                     | <- TopAppBar
++-------------------------------------------------------+
+|                                                       |
+| +---------------------------------------------------+ |
+| | Cien anos de soledad                              | | <- Card
+| | Autor: Gabriel Garcia Marquez | Categoria: NOVELA  | |
+| | ISBN: 978-0307474728          | Anio: 1967         | |
+| | Precio: $25.50                | Stock: 15 unid.    | |
+| +---------------------------------------------------+ |
+|                                                       |
+| +---------------------------------------------------+ |
+| | El amor en los tiempos del colera                 | | <- Card
+| | Autor: Gabriel Garcia Marquez | Categoria: NOVELA  | |
+| | ISBN: 978-0307387264          | Anio: 1985         | |
+| | Precio: $22.00                | Stock: 10 unid.    | |
+| +---------------------------------------------------+ |
+|                                                       |
+| +---------------------------------------------------+ |
+| | La casa de los espiritus                          | | <- Card
+| | Autor: Isabel Allende         | Categoria: NOVELA  | |
+| | ISBN: 978-0307474742          | Anio: 1982         | |
+| | Precio: $20.00                | Stock: 8 unid.     | |
+| +---------------------------------------------------+ |
+|                                                       |
++-------------------------------------------------------+
+|    [*] Libros                     [ ] Autores         | <- NavigationBar
++-------------------------------------------------------+
+
+
+2. COMPONENTES DE JETPACK COMPOSE UTILIZADOS
+
+- Scaffold: Proporciona el contenedor estructurado de la pantalla con soporte para la TopAppBar y la NavigationBar inferior.
+- TopAppBar: Barra superior con el titulo descriptivo de la pantalla "Catalogo de Libros".
+- LazyColumn: Contenedor desplazable optimizado que renderiza los libros a medida que se desplaza la lista.
+- items: Funcion que itera sobre la lista DatosEjemplo.libros para generar dinamicamente cada elemento.
+- Card: Tarjeta contenedora con bordes y sombra para presentar la informacion de cada libro de forma organizada.
+- Column: Organiza verticalmente las filas de texto dentro de cada Card.
+- Row: Dispone de forma horizontal pares de atributos como Autor/Categoria, ISBN/Anio y Precio/Stock.
+- Text: Muestra los valores textuales y numericos de los atributos del libro.
+- NavigationBar: Barra inferior de navegacion principal de la aplicacion.
+- NavigationBarItem: Boton seleccionable dentro de la barra de navegacion correspondiente a la ruta "libros".
+- Icon: Muestra el icono representativo del catalogo de libros en la barra inferior.
+
+
+3. ATRIBUTOS DE LA CLASE LIBRO MOSTRADOS EN PANTALLA
+
+- id: Identificador unico del libro.
+- titulo: Titulo principal del libro.
+- autor.nombre: Nombre del autor asociado a la clase Autor.
+- categoria: Categoria del libro del enum Categoria (ej. NOVELA, CIENCIA).
+- isbn: Codigo ISBN del libro.
+- anioPublicacion: Anio de publicacion del libro.
+- precio: Precio en formato numerico decimal (Double).
+- stock: Cantidad disponible en inventario.
+
+
+===============================================================================
+PANTALLA 2: LISTA DE AUTORES
+-------------------------------------------------------------------------------
+
+1. BOCETO ASCII DE LA PANTALLA
+
++-------------------------------------------------------+
+|  [Libreria - Autores Registrados]                    | <- TopAppBar
++-------------------------------------------------------+
+|                                                       |
+| +---------------------------------------------------+ |
+| | ID: 1                                             | | <- Card
+| | Nombre: Gabriel Garcia Marquez                    | |
+| | Nacionalidad: Colombiana                          | |
+| +---------------------------------------------------+ |
+|                                                       |
+| +---------------------------------------------------+ |
+| | ID: 2                                             | | <- Card
+| | Nombre: Isabel Allende                            | |
+| | Nacionalidad: Chilena                             | |
+| +---------------------------------------------------+ |
+|                                                       |
+| +---------------------------------------------------+ |
+| | ID: 3                                             | | <- Card
+| | Nombre: Mario Vargas Llosa                        | |
+| | Nacionalidad: Peruana                             | |
+| +---------------------------------------------------+ |
+|                                                       |
++-------------------------------------------------------+
+|    [ ] Libros                     [*] Autores         | <- NavigationBar
++-------------------------------------------------------+
+
+
+2. COMPONENTES DE JETPACK COMPOSE UTILIZADOS
+
+- Scaffold: Mantiene la estructura visual uniforme definiendo la barra superior y la barra de navegacion inferior.
+- TopAppBar: Muestra el titulo "Autores Registrados" en la cabecera de la pantalla.
+- LazyColumn: Renderiza la lista vertical desplazable de los autores.
+- items: Itera sobre la lista DatosEjemplo.autores para construir las tarjetas individuales.
+- Card: Envoltorio visual que agrupa los datos de cada autor con elevacion y contraste.
+- Column: Alinea verticalmente los datos de ID, Nombre y Nacionalidad dentro de la tarjeta.
+- Row: Organiza la disposicion interna de etiquetas y valores cuando sea necesario.
+- Text: Renderiza los campos de texto con el formato e informacion correspondiente del autor.
+- NavigationBar: Mantiene la barra de navegacion inferior activa para permitir el cambio de pantalla.
+- NavigationBarItem: Elemento seleccionable para la ruta de la pantalla "autores".
+- Icon: Icono representativo de la seccion de autores en la barra inferior.
+
+
+3. ATRIBUTOS DE LA CLASE AUTOR MOSTRADOS EN PANTALLA
+
+- id: Identificador unico del autor.
+- nombre: Nombre completo del autor.
+- nacionalidad: Pais o nacionalidad del autor.
+
+
+===============================================================================
+NAVEGACION
+===============================================================================
+
+La navegacion de la aplicacion se gestionara mediante Jetpack Compose Navigation:
+- NavHost: Contenedor que administra la conmutacion entre las pantallas de la aplicacion.
+- rememberNavController: Controlador que gestiona el estado del historial y las transiciones entre rutas.
+- Rutas definidas:
+  * "libros": Pantalla principal con el catalogo de libros (LibrosScreen).
+  * "autores": Pantalla secundaria con el listado de autores (AutoresScreen).
+
+
+===============================================================================
+FUENTE DE DATOS
+===============================================================================
+
+La fuente de datos para ambas pantallas sera la clase estatica DatosEjemplo.kt
+ubicada en el paquete com.example.libreria.models. Se utilizaran directamente
+sus propiedades estaticas DatosEjemplo.libros y DatosEjemplo.autores. No se
+utilizara ninguna base de datos ni persistencia externa para este checkpoint.
+
+
+===============================================================================
+ESTRUCTURA DE ARCHIVOS
+===============================================================================
+
+Los archivos a implementar en el Checkpoint 5 seguiran la siguiente estructura:
+
+- ui/screens/LibrosScreen.kt: Composable de la pantalla que muestra el listado de Libros.
+- ui/screens/AutoresScreen.kt: Composable de la pantalla que muestra el listado de Autores.
+- ui/navigation/AppNavigation.kt: Componente encargado de configurar el NavHost, las rutas y la NavigationBar inferior.
